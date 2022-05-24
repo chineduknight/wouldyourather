@@ -1,6 +1,8 @@
 import ScrollToTop from "components/ScrollToTop";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import PROTECTED_ROUTES from "routes/protectedRoutes";
+import Navbar from "components/Navbar";
+import { Container } from "@chakra-ui/react";
 
 const AppWrapper = () => {
   const routes = useRoutes(PROTECTED_ROUTES);
@@ -11,7 +13,10 @@ const Authenticated = () => {
   return (
     <Router>
       <ScrollToTop />
-      <AppWrapper />
+      <Navbar />
+      <Container>
+        <AppWrapper />
+      </Container>
     </Router>
   );
 };

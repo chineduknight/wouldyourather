@@ -4,4 +4,6 @@ export const PUBLIC_PATHS = {
 
 export const PROTECTED_PATHS = {
   DASHBOARD: "/dashboard",
+  ADD: "/add-question",
+  BOARD: "/leaderboard",
 };

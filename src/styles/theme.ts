@@ -7,8 +7,8 @@ import { ButtonStyles as Button } from "./components/buttonStyles";
 
 const myTheme = extendTheme({
   fonts: {
-    heading: "Source Sans Pro",
-    body: "Source Sans Pro",
+    heading: "Roboto",
+    body: "Roboto",
   },
   colors: {
     primary: "#ffdd00",

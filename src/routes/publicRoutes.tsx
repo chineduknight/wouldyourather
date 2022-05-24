@@ -10,7 +10,7 @@ const { LOGIN } = PUBLIC_PATHS;
 const PUBLIC_ROUTES = [
   { path: LOGIN, element: <Login /> },
   { path: "/", element: <Login /> },
-  // this enables you not to access the public routes when logged in
+  // this enables you not to access the private routes when logged out
   ...Object.values(PROTECTED_PATHS).map((route) => {
     return {
       path: route,

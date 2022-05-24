@@ -10,16 +10,16 @@ export const ButtonStyles = {
   // styles for different visual variants ("outline", "solid")
   variants: {
     primary: (props) => ({
-      bg: "#ffcc00",
+      bg: "#21ba45",
       borderRadius: "4px",
       fontSize: "14px",
-      fontWeight: "500",
+      color: "#fff",
+      fontWeight: "700",
       _hover: {
-        bg: "#ffcc00",
+        bg: "#0d912c",
         boxShadow: "md",
-        color: "#fff",
         _disabled: {
-          bg: "#ffcc00",
+          bg: "#0d912c",
           color: "black",
         },
       },
