@@ -4,7 +4,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
 import ErrorBoundary from "components/ErrorBoundary";
+import { Provider } from "react-redux";
 import theme from "styles/theme";
+import store from "services/redux";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -22,7 +24,9 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <ToastContainer />
         <ErrorBoundary>
-          <Pages />
+          <Provider store={store}>
+            <Pages />
+          </Provider>
         </ErrorBoundary>
         <RenderDevTool />
       </QueryClientProvider>

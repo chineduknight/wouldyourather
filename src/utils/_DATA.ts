@@ -1,3 +1,5 @@
+import { IQuestion } from "type";
+
 /* eslint-disable promise/param-names */
 let users = {
   sarahedo: {
@@ -35,7 +37,7 @@ let users = {
   },
 };
 
-let questions = {
+let questions: Record<string, IQuestion> = {
   "8xf0y6ziyjabvozdd253nd": {
     id: "8xf0y6ziyjabvozdd253nd",
     author: "sarahedo",
@@ -126,7 +128,7 @@ export function _getUsers() {
   });
 }
 
-export function _getQuestions() {
+export function _getQuestions(): Promise<Record<string, IQuestion>> {
   return new Promise((res) => {
     setTimeout(() => res({ ...questions }), 1000);
   });

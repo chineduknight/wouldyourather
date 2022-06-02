@@ -17,6 +17,9 @@ import {
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
 import { PROTECTED_PATHS } from "routes/pagePath";
+import { Dispatch } from "react";
+import { useDispatch } from "react-redux";
+import { resetUser } from "services/redux/reducers/auth";
 
 interface NavItem {
   label: string;
@@ -27,6 +30,7 @@ interface NavItem {
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const dispatch: Dispatch<any> = useDispatch();
 
   return (
     <Box>
@@ -69,6 +73,7 @@ export default function WithSubnavigation() {
 
         <Stack flex={{ base: 1, md: 0 }} justify={"flex-end"} direction={"row"} spacing={6}>
           <Button
+            onClick={() => dispatch(resetUser())}
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
