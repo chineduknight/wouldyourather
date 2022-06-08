@@ -1,22 +1,15 @@
 import { Box, Text, Container, Select, Button } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { _getUsers } from "utils/_DATA";
-import { useDispatch } from "react-redux";
+import { Dispatch, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "services/redux/reducers/auth";
-import { Dispatch } from "redux";
+import { RootState } from "services/redux/configure_store";
+import { IUser } from "type";
 
 const Login = () => {
-  const [users, setUsers] = useState<any>({});
-  const [selectedUser, setSelectedUser] = useState({});
-  const dispatch: Dispatch<any> = useDispatch();
-  const getUsers = async () => {
-    const allUsers: any = await _getUsers();
-    setUsers(allUsers || []);
-  };
+  const [selectedUser, setSelectedUser] = useState<any>();
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  const users = useSelector((state: RootState) => state.auth.users) as Record<string, IUser>;
+  const dispatch: Dispatch<any> = useDispatch();
 
   const handleSelection = (event) => {
     const userName = event.target.value;

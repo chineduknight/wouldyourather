@@ -13,13 +13,15 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
+  Avatar,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
 import { PROTECTED_PATHS } from "routes/pagePath";
 import { Dispatch } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetUser } from "services/redux/reducers/auth";
+import { RootState } from "services/redux/configure_store";
 
 interface NavItem {
   label: string;
@@ -31,7 +33,7 @@ interface NavItem {
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
   const dispatch: Dispatch<any> = useDispatch();
-
+  const user: any = useSelector((state: RootState) => state.auth.user);
   return (
     <Box>
       <Flex
@@ -70,7 +72,8 @@ export default function WithSubnavigation() {
             <DesktopNav />
           </Flex>
         </Flex>
-
+        <Avatar src={user.avatarURL} h="32px" w="32px" mr="3" />
+        <Text mr="3">{user.id}</Text>
         <Stack flex={{ base: 1, md: 0 }} justify={"flex-end"} direction={"row"} spacing={6}>
           <Button
             onClick={() => dispatch(resetUser())}

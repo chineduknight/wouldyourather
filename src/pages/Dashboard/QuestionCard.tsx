@@ -1,10 +1,11 @@
 import { Text, Button } from "@chakra-ui/react";
 import QuestionWrapper from "components/QuestionWrapper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PROTECTED_PATHS } from "routes/pagePath";
+import { RootState } from "services/redux/configure_store";
 import { setQuestion } from "services/redux/reducers/questions";
-import { IQuestion } from "type";
+import { IQuestion, IUser } from "type";
 import { convertParamsToString } from "utils/helper";
 
 type QuestionCardProps = {
@@ -15,6 +16,7 @@ const QuestionCard = (props: QuestionCardProps) => {
   const { question, hasAnswered = false } = props;
   const { author, optionOne } = question;
   const history = useNavigate();
+  const users = useSelector((state: RootState) => state.auth.users) as Record<string, IUser>;
 
   const dispatch = useDispatch();
   const goToQuestion = () => {
@@ -23,7 +25,7 @@ const QuestionCard = (props: QuestionCardProps) => {
     history(url);
   };
   return (
-    <QuestionWrapper author={author}>
+    <QuestionWrapper author={author} avatarUrl={users[author].avatarURL}>
       <Text fontWeight="bold">Would you rather</Text>
       <Text mt="3" textAlign="center">
         {optionOne.text}

@@ -1,30 +1,26 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, Stack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { _getQuestions } from "utils/_DATA";
-import { useDispatch, useSelector } from "react-redux";
-import { Dispatch } from "redux";
-import { updateQuestions } from "services/redux/reducers/questions";
+// import { _getQuestions } from "utils/_DATA";
+import { useSelector } from "react-redux";
 import { RootState } from "services/redux/configure_store";
 import { IQuestion } from "type";
 import QuestionCard from "./QuestionCard";
 
 const Dashboard = () => {
-  const dispatch: Dispatch<any> = useDispatch();
+  // const dispatch: Dispatch<any> = useDispatch();
   const questions: Record<string, IQuestion> | null = useSelector(
     (state: RootState) => state.questions.all,
   );
   const user: any = useSelector((state: RootState) => state.auth.user);
+  const allQuestions: any = useSelector((state: RootState) => state.questions.all);
 
   const [answeredQuestion, setAnsweredQuestion] = useState<Array<IQuestion>>([]);
   const [unAnsweredQuestion, setUnAnsweredQuestion] = useState<Array<IQuestion>>([]);
 
-  const getUsers = async () => {
-    const allQuestions: Record<string, IQuestion> = await _getQuestions();
-    console.log("getU:", allQuestions);
-    dispatch(updateQuestions(allQuestions));
+  const getQuestions = async () => {
     const answeredQ: Array<IQuestion> = [];
     const unAnsweredQ: Array<IQuestion> = [];
-    Object.values(allQuestions).forEach((question: IQuestion) => {
+    Object.values(allQuestions).forEach((question: any) => {
       const userVotedOptionOne = question.optionOne.votes.includes(user.id);
       const userVotedOptionTwo = question.optionTwo.votes.includes(user.id);
       if (userVotedOptionOne || userVotedOptionTwo) {
@@ -37,7 +33,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getUsers();
+    getQuestions();
   }, []);
 
   return (
@@ -50,7 +46,7 @@ const Dashboard = () => {
         <TabPanels>
           <TabPanel border="1px solid rgba(34,36,38,.15)">
             <Stack spacing="20px">
-              {questions === null ? (
+              {questions === null || unAnsweredQuestion.length === 0 ? (
                 <Box>No Questions</Box>
               ) : (
                 unAnsweredQuestion.map((question: IQuestion) => (

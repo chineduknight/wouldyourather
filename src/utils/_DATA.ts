@@ -1,11 +1,12 @@
-import { IQuestion } from "type";
+import { IQuestion, IUser } from "type";
 
 /* eslint-disable promise/param-names */
-let users = {
+let users: Record<string, IUser> = {
   sarahedo: {
     id: "sarahedo",
     name: "Sarah Edo",
-    avatarURL: "",
+    avatarURL:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
     answers: {
       "8xf0y6ziyjabvozdd253nd": "optionOne",
       "6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -17,7 +18,8 @@ let users = {
   tylermcginnis: {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
-    avatarURL: "",
+    avatarURL:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
     answers: {
       vthrdm985a262al8qx3do: "optionOne",
       xj352vofupe1dqz9emx13r: "optionTwo",
@@ -27,7 +29,8 @@ let users = {
   johndoe: {
     id: "johndoe",
     name: "John Doe",
-    avatarURL: "",
+    avatarURL:
+      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",
@@ -122,7 +125,9 @@ function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
 
-export function _getUsers() {
+type GetUserReturn = Record<string, IUser>;
+
+export function _getUsers(): Promise<GetUserReturn> {
   return new Promise((res) => {
     setTimeout(() => res({ ...users }), 1000);
   });
@@ -134,7 +139,7 @@ export function _getQuestions(): Promise<Record<string, IQuestion>> {
   });
 }
 
-function formatQuestion({ optionOneText, optionTwoText, author }) {
+function formatQuestion({ optionOneText, optionTwoText, author }): IQuestion {
   return {
     id: generateUID(),
     timestamp: Date.now(),
@@ -150,10 +155,10 @@ function formatQuestion({ optionOneText, optionTwoText, author }) {
   };
 }
 
-export function _saveQuestion(question) {
+export function _saveQuestion(question): Promise<Record<string, IQuestion>> {
   return new Promise((res, rej) => {
     const authedUser = question.author;
-    const formattedQuestion = formatQuestion(question);
+    const formattedQuestion: any = formatQuestion(question);
 
     setTimeout(() => {
       questions = {

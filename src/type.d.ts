@@ -13,4 +13,18 @@ export interface IQuestion {
   };
 }
 
+export interface IUser {
+  id: string;
+  name: string;
+  avatarURL: string;
+  answers: Record<string, string>;
+  questions: Array<string>;
+}
+export const DEFAULT_USER = {
+  id: "",
+  name: "",
+  avatarURL: "",
+  answers: {},
+  questions: [],
+};
 // type DispatchType = (args: ArticleAction) => ArticleAction;

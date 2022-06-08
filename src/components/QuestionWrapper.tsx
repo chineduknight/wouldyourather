@@ -3,11 +3,12 @@ import React from "react";
 
 type QuestionWrapperProps = {
   children: React.ReactNode;
+  avatarUrl: string;
   author?: string;
 };
 
 const QuestionWrapper = (props: QuestionWrapperProps) => {
-  const { author, children } = props;
+  const { author, children, avatarUrl } = props;
   return (
     <Box
       p="4"
@@ -21,7 +22,7 @@ const QuestionWrapper = (props: QuestionWrapperProps) => {
         </Box>
       ) : null}
       <Flex alignItems="center" py="4">
-        <Avatar w="100px" h="100px" />
+        <Avatar w="100px" h="100px" src={avatarUrl} />
         <Box borderLeft="2px solid rgba(34,36,38,.15)" pl="4" ml="4" w="100%">
           {children}
         </Box>
