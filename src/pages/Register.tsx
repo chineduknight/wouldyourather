@@ -39,14 +39,18 @@ export default function SignupCard() {
   const [loading, setLoading] = useBoolean();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading.on();
-    const userExists = Object.keys(users).find((user) => user === data.id.toLowerCase());
+    let userName = data.id;
+    userName = userName.replace(/\s/g, "");
+    userName = userName.toLowerCase();
+
+    const userExists = Object.keys(users).find((user) => user === userName);
     if (userExists) {
       setLoading.off();
       return toast.error("Username has been taken");
     }
     const newUser = {
       ...data,
-      id: data.id.toLowerCase(),
+      id: userName,
       answers: {},
       questions: [],
     };
