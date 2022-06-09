@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useState, Dispatch } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PUBLIC_PATHS } from "routes/pagePath";
 import { RootState } from "services/redux/configure_store";
 import { updateUser } from "services/redux/reducers/auth";
@@ -23,7 +23,8 @@ export default function SimpleCard() {
 
   const users = useSelector((state: RootState) => state.auth.users) as Record<string, IUser>;
   const dispatch: Dispatch<any> = useDispatch();
-
+  const { state }: any = useLocation();
+  const navigate = useNavigate();
   const handleSelection = (event) => {
     const userName = event.target.value;
     setSelectedUser(users[userName]);
@@ -57,7 +58,10 @@ export default function SimpleCard() {
 
             <Stack spacing={10}>
               <Button
-                onClick={() => dispatch(updateUser(selectedUser))}
+                onClick={() => {
+                  dispatch(updateUser(selectedUser));
+                  navigate(state?.path || "/dashboard");
+                }}
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{

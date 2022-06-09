@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Box, Button, Flex, Progress, Radio, RadioGroup, Stack, Text } from "@chakra-ui/react";
 import QuestionWrapper from "components/QuestionWrapper";
 import React from "react";
@@ -5,12 +6,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "services/redux/configure_store";
 import { IQuestion, IUser } from "type";
 import { BsCheck } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { answerQuestion } from "services/redux/reducers/questions";
 import { updateAllUsers, updateUserQuestion } from "services/redux/reducers/auth";
 const Question = () => {
   const [value, setValue] = React.useState("-1");
-  const question: IQuestion | null = useSelector((state: RootState) => state.questions.question);
+  const questions: any = useSelector((state: RootState) => state.questions.all);
+  const { question_id } = useParams<any>();
+  const foundId = Object.keys(questions).find((question) => question === question_id);
+  if (!foundId) return <Box>Page not found</Box>;
+  const question: IQuestion = questions[foundId];
   const user = useSelector((state: RootState) => state.auth.user) as IUser;
   const users = useSelector((state: RootState) => state.auth.users) as Record<string, IUser>;
   const history = useNavigate();

@@ -7,5 +7,5 @@ export const PROTECTED_PATHS = {
   DASHBOARD: "/dashboard",
   ADD: "/add",
   BOARD: "/leaderboard",
-  QUESTION: "/question/:id",
+  QUESTION: "/questions/:question_id",
 };

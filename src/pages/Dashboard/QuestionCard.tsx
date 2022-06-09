@@ -21,7 +21,7 @@ const QuestionCard = (props: QuestionCardProps) => {
   const dispatch = useDispatch();
   const goToQuestion = () => {
     dispatch(setQuestion(question));
-    const url = convertParamsToString(PROTECTED_PATHS.QUESTION, { id: question.id });
+    const url = convertParamsToString(PROTECTED_PATHS.QUESTION, { question_id: question.id });
     history(url);
   };
   return (

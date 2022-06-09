@@ -14,9 +14,10 @@ const PUBLIC_ROUTES = [
   { path: "/", element: <Login /> },
   // this enables you not to access the private routes when logged out
   ...Object.values(PROTECTED_PATHS).map((route) => {
+    const pathName = window.location.pathname;
     return {
       path: route,
-      element: <Navigate to="/" />,
+      element: <Navigate to="/" replace state={{ path: pathName }} />,
     };
   }),
   { path: "*", element: <div>Page not found</div> },
