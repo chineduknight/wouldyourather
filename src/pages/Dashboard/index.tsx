@@ -47,9 +47,13 @@ const Dashboard = () => {
               {questions === null || unAnsweredQuestion.length === 0 ? (
                 <Box>No Questions</Box>
               ) : (
-                unAnsweredQuestion.map((question: IQuestion) => (
-                  <QuestionCard key={question.id} question={question} />
-                ))
+                unAnsweredQuestion
+                  .sort((a, b) => {
+                    return b.timestamp - a.timestamp;
+                  })
+                  .map((question: IQuestion) => (
+                    <QuestionCard key={question.id} question={question} />
+                  ))
               )}
             </Stack>
           </TabPanel>
@@ -59,9 +63,13 @@ const Dashboard = () => {
               {answeredQuestion.length === 0 ? (
                 <Text>You have not answered any questions</Text>
               ) : (
-                answeredQuestion.map((question: IQuestion) => (
-                  <QuestionCard key={question.id} question={question} hasAnswered />
-                ))
+                answeredQuestion
+                  .sort((a, b) => {
+                    return b.timestamp - a.timestamp;
+                  })
+                  .map((question: IQuestion) => (
+                    <QuestionCard key={question.id} question={question} hasAnswered />
+                  ))
               )}
             </Stack>
           </TabPanel>
