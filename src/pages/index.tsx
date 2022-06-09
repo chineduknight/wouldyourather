@@ -1,3 +1,4 @@
+import Loader from "components/Loader";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
@@ -24,9 +25,8 @@ const Pages = () => {
       getUsersAndQuestions();
     }
   }, []);
-
   if (loading) {
-    return <div>Loading....</div>;
+    return <Loader />;
   }
 
   if (user) {

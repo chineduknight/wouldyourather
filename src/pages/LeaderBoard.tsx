@@ -35,7 +35,7 @@ const LeaderBoard = () => {
   }, []);
   return (
     <Stack mt="4" spacing="20px">
-      {leaderBoard.map((leader) => (
+      {leaderBoard.slice(0, 3).map((leader) => (
         <LeaderCard key={nanoid()} user={leader} />
       ))}
     </Stack>

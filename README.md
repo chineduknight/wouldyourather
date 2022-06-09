@@ -1,10 +1,8 @@
-# Project Title
-
-The name of the Project
+# Would You Rather (simplified)
 
 ## Demo link:
 
-Access my site at [google.com](https://google.com)
+Access the online version at [wouldyouratherknight](https://wouldyouratherknight.netlify.app/)
 
 ## Table of Content:
 
@@ -19,7 +17,7 @@ Access my site at [google.com](https://google.com)
 
 ## About The App
 
-[Name of project] is an app that ...
+The basic functionality of this app is to help users have fun asking and answering questions
 
 ## Screenshots
 
@@ -29,29 +27,28 @@ Picture by [Kelly Sikkema](https://unsplash.com/@kellysikkema)
 
 ## Technologies
 
-I used `html`, `css`, ...
+I used `React`, `Redux`, `Chakra-UI`,`Redux-Toolkit` etc
 
 ## Setup
 
 - download or clone the repository
 - run `npm install`
-- ...
+- run `npm start`
 
 ## Approach
 
-I adopted the `BEM` naming style for my css class names and ...
+I basically used the clean code approach I tried to do higher order components as much as possible
 
 ## Status
 
-[name of project] is still in progress. `Version 2` will be out soon.
+This project is complete
 
 ## Credits
 
 List of contriubutors:
 
 - [Chinedu Knight](https://chineduknight.netlify.app/)
-- [Beginners guide to BEM](link-goes-here.com)
 
 ## License
 
-MIT license @ [author](author.com)
+MIT license

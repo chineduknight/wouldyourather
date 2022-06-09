@@ -208,3 +208,15 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
     }, 500);
   });
 }
+
+export function _saveUser(user: IUser) {
+  return new Promise((res: any) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [user.id]: user,
+      };
+      res();
+    }, 1000);
+  });
+}

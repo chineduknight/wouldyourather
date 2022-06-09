@@ -1,13 +1,11 @@
-import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, Stack } from "@chakra-ui/react";
+import { Box, Tab, TabList, Text, TabPanel, TabPanels, Tabs, Stack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-// import { _getQuestions } from "utils/_DATA";
 import { useSelector } from "react-redux";
 import { RootState } from "services/redux/configure_store";
 import { IQuestion } from "type";
 import QuestionCard from "./QuestionCard";
 
 const Dashboard = () => {
-  // const dispatch: Dispatch<any> = useDispatch();
   const questions: Record<string, IQuestion> | null = useSelector(
     (state: RootState) => state.questions.all,
   );
@@ -58,9 +56,13 @@ const Dashboard = () => {
 
           <TabPanel border="1px solid rgba(34,36,38,.15)">
             <Stack spacing="20px">
-              {answeredQuestion.map((question: IQuestion) => (
-                <QuestionCard key={question.id} question={question} hasAnswered />
-              ))}
+              {answeredQuestion.length === 0 ? (
+                <Text>You have not answered any questions</Text>
+              ) : (
+                answeredQuestion.map((question: IQuestion) => (
+                  <QuestionCard key={question.id} question={question} hasAnswered />
+                ))
+              )}
             </Stack>
           </TabPanel>
         </TabPanels>
