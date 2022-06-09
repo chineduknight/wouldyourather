@@ -16,7 +16,7 @@ import {
   Avatar,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { PROTECTED_PATHS } from "routes/pagePath";
 import { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -193,13 +193,13 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
-
+  const navigate = useNavigate();
   return (
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
         as={Link}
-        href={href ?? "#"}
+        onClick={() => navigate(href)}
         justify={"space-between"}
         align={"center"}
         _hover={{
