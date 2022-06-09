@@ -60,7 +60,7 @@ export default function SimpleCard() {
               <Button
                 onClick={() => {
                   dispatch(updateUser(selectedUser));
-                  navigate(state?.path || "/dashboard");
+                  navigate(state?.path || "/");
                 }}
                 bg={"blue.400"}
                 color={"white"}
